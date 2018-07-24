@@ -60,9 +60,11 @@ bool Fifo::allEqual () {
 	return true;
 }
 
-int Fifo::average () {
-	for (int i = 0; i < _size-1; i++) {
+type_fi Fifo::average () {
+	type_fi avg = 0;
+    for (int i = 0; i < _size-1; i++) {
+        avg += _buf[i];
     }
 		
-	return true;
+	return avg/_count;
 }
