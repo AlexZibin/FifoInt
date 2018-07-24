@@ -13,8 +13,8 @@ class Fifo {
 		type_fi read (void);
 		inline int size (void) { return _size; };
 		inline int count (void) { return _count; };
-		bool isFull (void);
-		bool isEmpty (void);
+		inline bool isFull (void);
+		inline bool isEmpty (void);
 		bool allEqual (void);
         type_fi average (void);
 	private:
