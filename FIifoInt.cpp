@@ -2,17 +2,17 @@
 
 Fifo::Fifo (int size) {
 	_size = size;
-	_buf = new float[_size];
+	_buf = new type_fi[_size];
 	_inPtr = _outPtr = _count = 0;
 }
 
-Fifo::Fifo (float *sample, int size) {
+Fifo::Fifo (type_fi *sample, int size) {
 	_size = _count = size;
 	_buf = sample;
 	_inPtr = _outPtr = 0;
 }
 
-void Fifo::in (float val) {
+void Fifo::in (type_fi val) {
 	_buf[_inPtr] = val;
 	increase (&_inPtr);
 		//if (++_inPtr == _size) _inPtr = 0;
@@ -25,9 +25,9 @@ void Fifo::in (float val) {
 
 void Fifo::increase (int *ptr) { if ( ++*ptr == _size) *ptr = 0; }
 
-float Fifo::out () {
+type_fi Fifo::out () {
 	if (!isEmpty()) {
-		float retval = _buf[_outPtr];
+		type_fi retval = _buf[_outPtr];
 		increase (&_outPtr);
 		--_count;
 		
@@ -36,9 +36,9 @@ float Fifo::out () {
 	else return -1;
 }
 
-float Fifo::read () {
+type_fi Fifo::read () {
 	if (!isEmpty()) {
-		float retval = _buf[_outPtr];
+		type_fi retval = _buf[_outPtr];
 		increase (&_outPtr);
 		
 		return retval;
@@ -46,17 +46,9 @@ float Fifo::read () {
 	else return -1;
 }
 
-int Fifo::size () {
-	return _size;
-}
+inline bool Fifo::isFull () { return _count == _size; }
 
-int Fifo::count () {
-	return _count;
-}
-
-bool Fifo::isFull () { return _count == _size; }
-
-bool Fifo::isEmpty () { return _count == 0; }
+inline bool Fifo::isEmpty () { return _count == 0; }
 
 bool Fifo::allEqual () {
 	if (_count < _size) return false;
@@ -64,6 +56,13 @@ bool Fifo::allEqual () {
 	for (int i = 0; i < _size-1; i++)
 		if (_buf[i] != _buf[i+1]) 
 			return false;
+		
+	return true;
+}
+
+int Fifo::average () {
+	for (int i = 0; i < _size-1; i++) {
+    }
 		
 	return true;
 }
