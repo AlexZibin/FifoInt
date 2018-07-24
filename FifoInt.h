@@ -9,14 +9,14 @@ class Fifo {
 		Fifo (int size);
 		Fifo (type_fi *sample, int size);
 		void in (type_fi val);
-		type_fi out ();
-		type_fi read ();
-		int size ();
-		int count ();
-		bool isFull ();
-		bool isEmpty ();
-		bool allEqual ();
-        type_fi average ();
+		type_fi out (void);
+		type_fi read (void);
+		inline int size (void) { return _size; };
+		inline int count (void) { return _count; };
+		bool isFull (void);
+		bool isEmpty (void);
+		bool allEqual (void);
+        type_fi average (void);
 	private:
 		int _size, _count, _inPtr, _outPtr;
 		type_fi *_buf;
